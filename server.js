@@ -69,10 +69,22 @@ app.delete('/quotes', (req, res) =>{
         },
         (err, result) => {
             if (err) return res.send(500, err)
-            res.send({message: 'A darth vadar quote got deleted'})
+            console.log("comment deleted");
         }
     )
 })
+
+app.delete('/quotes/:_id'), (req, res) => {
+    db.db('star-wars-quotes-tut').collection('quotes').findOneAndDelete(
+        {
+            _id: req.body.id
+        },
+        (err, result) => {
+            if(err) return res.send(500, err)
+            res.send()
+        }
+    )
+}
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
