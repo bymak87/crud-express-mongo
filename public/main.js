@@ -26,7 +26,7 @@ del.addEventListener('click', function () {
             'Content-type': 'application/json'
         },
         body: JSON.stringify({
-            'name': 'Darth Vadar'
+            'name': 'Darth Vader'
         })
     }).then(res => {
         if(res.ok) return res.json()
@@ -35,3 +35,30 @@ del.addEventListener('click', function () {
         window.location.reload(true);
     })
 })
+
+const deleteQuotes = document.querySelectorAll('.delete-btn');
+    deleteQuotes.forEach(deleteButton => {
+        deleteButton.addEventListener('click', function (id){
+         console.log(id);
+    });
+
+})
+
+function deleteComment (id){
+    fetch('/quotes/:_id', {
+        method: 'delete',
+        headers: {
+            'Content-type': 'application/json'
+        },
+        body: 
+            JSON.stringify({
+                '_id' : id
+            })
+        
+    }).then(res => {
+        if(res.ok) return res.json()
+    }).then(data => {
+        console.log("comment deleted");
+        window.location.reload(true);
+    })
+}
